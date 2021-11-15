@@ -1,0 +1,272 @@
+:root {
+    /* Colores */
+    --primario: #9C27B0;
+    --primarioOscuro: #89119D;
+    --secundario: #FFCE00;
+    --secundarioOscuro: rgb(233,287,2);
+    --blanco: #FFF;
+    --negro: #000;
+    /* fuentes */
+    --fuentePrincipal: 'Staatliches', cursive; /* font-family: 'Krub', sans-serif;*/
+}
+html {
+    box-sizing: border-box;    
+    font-size:  62.5%; /*Para usar 1rem == 10 pixeles, y nos evitamos estar con la calculadora.*/
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+
+/* Globales */
+body {
+    background-color: var(--primario);
+    font-size:  1.6rem;
+    line-height:  1.5;
+}
+p {
+    font-size: 1.8;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--blanco);
+}
+a {
+    text-decoration:  none;
+}
+img {
+    /* Quitamos max-width: 100%; y dehamos width, que se usará para todas las imgs del proyecto */
+    width: 100%;
+}
+.contenedor {
+    max-width:  120rem;
+    margin: 0 auto;
+}
+h1, h2, h3 {
+    text-align: center;
+    color: var(--secundario);
+    font-family: var(--fuentePrincipal);
+}
+h1 {
+    font-size:  4rem;
+}
+h2 {
+    font-size: 3.2rem;
+}
+h3 {
+    font-size: 2.4rem;
+}
+
+
+/* Usamos convención BEM */
+/* Header */
+.header {
+    display: flex;
+    justify-content: center;
+}
+.header__logo {
+    margin: 3rem 0; /* arriba y abajo 3rem, a los laterales 0 */
+}
+
+
+/* Navegacion */
+.navegacion {
+    background-color: var(--primarioOscuro);
+    pad: 1rem 0;
+    display: flex;
+    justify-content: center;
+    /* gap: 2rem;  /*Nos separa cada elemento 2 rem, no compatible con todos los exploradores */
+    /* Cambiamos por un margin-rigth en navegación-enlace */
+    /* Salvo el último elemento, que le pongo margin 0, para poder tener todo el menú */
+    /* Perfectamente centrado. seleccionamos el último elemento usando "last-of-type" */
+    /* Y si agremo más enlaces más adelante, siempre le prondrá el margin 0 al último :-) */
+}
+.navegacion__enlace {
+    font-family: var(--fuentePrincipal);
+    color: var(--blanco);
+    font-size: 3rem;
+    margin-right: 2rem;
+}
+.navegacion__enlace:last-of-type {
+    margin-right: 0;
+}
+.navegacion__enlace--activo,
+.navegacion__enlace:hover {
+    color: var(--secundario);
+}
+/* Contenedor */
+.contenedor {
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+
+/* Footer */
+.footer {
+    background-color: var(--primarioOscuro);
+    padding: 1rem 0;
+    margin-top: 2rem;
+    text-align: center;
+}
+.footer__texto {
+    font-family: var(--fuentePrincipal);
+    font-size: 2.2rem;
+}
+/* Grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2rem;
+    row-gap: 2rem;
+    /*Equivalente en 1 sola línea gap: 2rem; */
+}
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+/* Productos */
+.producto {
+    background-color: var(--primarioOscuro);
+    padding: 1rem;
+}
+/*
+.producto__imagen {
+    width: 100%;
+} Lo propago desde la propiedad img (arriba) a todas las imágenes */
+.producto__nombre{
+    font-size: 4rem;
+}
+.producto__precio {
+    font-size: 2.8rem;
+    color: var(--secundario);
+}
+.producto__nombre, .producto__precio {
+    font-family: var(--fuentePrincipal);
+    margin: 11 rem 0;
+    text-align: center;
+    line-height: 1.2;
+}
+
+
+/* Graficos */
+.grafico {
+    min-height:  30rem;
+    /*Evitamos repeticiones */
+    background-repeat: none;
+    /*La imagen rellenará todo su hueco */
+    background-size: cover;
+}
+.grafico--camisas {
+    grid-row: 2 / 3;
+    grid-column: 1 / 3; /* Se puede pasar a .grafico */
+    background-image: url(../img/grafico1.jpg);
+}
+.grafico--node {
+    background-image: url(../img/grafico2.jpg);
+    grid-column: 1 / 3; /* Se puede pasar a .grafico */
+    grid-row: 8 / 9;
+}
+@media (min-width: 768px) { /*Para evitar desplazamientos laterales en móviles */
+    .grafico--node {
+        grid-row: 5 / 6;
+        grid-column: 2 / 4;
+        background-image: url(../img/grafico2.jpg);
+    }
+}
+
+
+/* Sobre Nosotros */
+.nosotros {
+    display: grid;
+    grid-template-rows: repetat(2, auto);
+}
+@media (min-width: 768px) {
+    .nosotros {
+        grid-template-columns: repetat(2, 1fr);
+        column-gap: 2rem;
+    }
+}
+.nosotros__imagen {
+    grid-row: 1/2;
+    /* width: 100%; Lo propago desde la propiedad img (arriba) a todas las imágenes */
+}
+@media (min-width: 768px) {
+    .nosotros__imagen {
+        grid-column: 2/3;
+    }
+}
+
+
+/* Bloques */
+.bloques {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 2rem;
+}
+@media (min-width: 768px) {
+    .bloques {
+        grid-template-columns: repeat(4,1fr);
+    }
+}
+.bloque {
+    text-align: center;
+}
+/* Vamos a elimiar todos los __imagen para poner el width: 100%; arriba y se propage en todas las imgs.
+.bloque__imagen {
+    width: 100%;
+}*/
+.bloque_titulo {
+    margin: 0;
+}
+/* Página del producto */
+@media (min-width: 768px) {
+    .camisa {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 2rem;
+    }
+}
+.formulario {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    /* Este padding lo añado yo porque me gusta :-), no es del curso*/
+    /*padding: 2rem;*/
+}
+.formulario__campo {
+    border: 1rem solid var(--primarioOscuro);
+    /* Todo lo de arriba se puede sustituir por...
+    
+    border-color: var(--primarioOscuro);
+    border-width: 1rem;
+    border-style: solid; */
+
+    background-color: transparent;
+    color: var(--blanco);
+    font-size: 2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 1rem;
+    /* Si no nos gusta la flecha del desplegable, podemos quitarla con... */
+    appearance: none;
+}
+.formulario__submit {
+    background-color:var(--secundario);
+    /*Todos los submit tiene un borde. lo quitamos*/
+    border: none;
+    font-size: 2rem;
+    font-family: var(--fuentePrincipal);
+    padding: 2rem;
+    /*al darle styles a un submit, se pierde la mano del ratón que indica botón*/
+    /*La ponemos de nuevo con un hover*/
+
+    /*Ponemos una transicion para el cambio de color del backgroud con el hover. Para que se vea mejor*/
+    transition: background-color .3s ease;
+    /*Posicionamos el botón en el grid */
+    grid-column: 1/3;
+}
+.formulario__submit:hover {
+    cursor: pointer;
+    background-color: var(--secundarioOscuro);
+}
+/* Fin CSS */
